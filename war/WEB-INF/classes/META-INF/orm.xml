@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+    version="1.0">
+    <description>bitlyminous ORM</description>
+    <package>com.appspot.bitlyminous.entity</package>
+    
+	<named-query name="findCurrentVersion">
+		<query>select v from Version v</query>
+	</named-query>    
+	<named-query name="findUrlByHash">
+		<query>select u from Url u where shortUrl = :shortUrl</query>
+	</named-query>    
+	<named-query name="findUserByScreenName">
+		<query>select u from User u where screenName = :screenName</query>
+	</named-query>    
+	<named-query name="findAllBlacklist">
+		<query>select b from Blacklist b</query>
+	</named-query>    
+	<named-query name="findBlacklistByHash">
+		<query>select b from Blacklist b where b.hash = :hash</query>
+	</named-query>    
+	<named-query name="deleteAllBlacklist">
+		<query>delete from Blacklist b</query>
+	</named-query>    
+	<named-query name="deleteBlacklistByHash">
+		<query>delete from Blacklist where hash = :hash</query>
+	</named-query>    
+	<named-query name="findAllMalware">
+		<query>select m from Malware m</query>
+	</named-query>    
+	<named-query name="findMalwareByHash">
+		<query>select m from Malware m where m.hash = :hash</query>
+	</named-query>    
+	<named-query name="deleteAllMalware">
+		<query>delete from Malware m</query>
+	</named-query>    
+	<named-query name="deleteMalwareByHash">
+		<query>delete from Malware where hash = :hash</query>
+	</named-query>
+	<named-query name="findSimilarUsers">
+		<query>select f.friend from Friendship f where f.user = :user order by f.similarity desc</query>
+	</named-query>
+	<named-query name="findAuthenticatedUsers">
+		<query>select u from User u where u.twitterToken is not null</query>
+	</named-query>
+	<!--     
+	<named-query name="findSimilarUrls">
+		<query>select f.friend from Friendship f where f.user = :user order by f.similarity desc</query>
+	</named-query>    
+	 -->
+	<mapped-superclass class="Entity" access="PROPERTY">
+		<attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="Bean" access="PROPERTY">
+		<attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+		</attributes>
+	</mapped-superclass>
+    <entity class="Url" name="Url" access="PROPERTY">
+        <table name="URL"/>
+        <attributes>
+            <!-- 
+            <basic name="name">
+                <column name="PRODUCT_NAME" length="100"/>
+            </basic>
+            <basic name="description">
+                <column length="255"/>
+            </basic>
+             -->
+        </attributes>
+    </entity>
+    <entity class="Blacklist" name="Blacklist" access="PROPERTY">
+        <table name="BLACKLIST"/>
+        <attributes>
+            <!-- 
+            <basic name="name">
+                <column name="PRODUCT_NAME" length="100"/>
+            </basic>
+            <basic name="description">
+                <column length="255"/>
+            </basic>
+             -->
+        </attributes>
+    </entity>
+    <entity class="Malware" name="Malware" access="PROPERTY">
+        <table name="MALWARE"/>
+        <attributes>
+            <!-- 
+            <basic name="name">
+                <column name="PRODUCT_NAME" length="100"/>
+            </basic>
+            <basic name="description">
+                <column length="255"/>
+            </basic>
+             -->
+        </attributes>
+    </entity>
+    <entity class="Version" name="Version" access="PROPERTY">
+        <table name="VERSION"/>
+        <attributes>
+            <!-- 
+            <basic name="name">
+                <column name="PRODUCT_NAME" length="100"/>
+            </basic>
+            <basic name="description">
+                <column length="255"/>
+            </basic>
+             -->
+        </attributes>
+    </entity>
+</entity-mappings>

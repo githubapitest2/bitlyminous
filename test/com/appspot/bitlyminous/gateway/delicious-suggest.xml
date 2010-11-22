@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suggest>
+  <recommended>Java</recommended>
+  <popular>hadoop</popular>
+  <popular>distributed</popular>
+  <popular>apache</popular>
+  <popular>mapreduce</popular>
+  <popular>cluster</popular>
+</suggest>

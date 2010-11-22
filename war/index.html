@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="google-site-verification" content="IDF0N-V_t9goUUtEr6VLYNbcFQ51Y7OqC1_QHrW9PGg" />		
+    <title>@bitlyminous: A Twitter Bot for Bitly</title>
+  </head>
+
+  <body>
+    <h1>@bitlyminous: A Twitter Bot for Bitly</h1>
+	<p>
+	<b>@bitlyminous</b> is a twitter bot that scans the user tweets for <a href="http://bit.ly">bitly</a> URLs and then sends related URLs and tweets.
+	<br/>To begin getting URL and tweet recommendations the user has to follow @bitlyminous. 
+	<br/>After that whenever the user posts a status containing a <a href="http://bit.ly">bitly</a> URL, the bot will first scan the URL for malware and blacklisted sites using <a href="http://code.google.com/apis/safebrowsing/">Google Safe Browsing API</a>. This is an added protection as many malware sites not caught by <a href="http://bit.ly">bitly</a> are caught by Google.
+	<br/>If the URL is safe, the bot will try to send a related URL recommendation to the user. It will also send related tweets to the user.
+	<br/>If the user signs up with bitlyminous using their twitter account, their friends timeline will also be scanned for malware and blacklisted sites and they will be alerted if any suspicious URL is found.
+	<br/>The user can also sign up for <a href="http://www.delicious.com/">delicious</a> and <a href="http://digg.com">digg</a> accounts, after which every <a href="http://bit.ly">bitly</a> URL they post will be added to their digg and delicious account as well.
+	<br/>On each Friday, the bot will send #FF recommendations of users that post similar URLs/tweets.
+	<br/>Also on each Friday the bot will send the statistics of all the URLs posted by the user as a DM.
+	</p>
+	<p>
+	The bot also has an interactive mode which is activated whenever @bitlyminous is mentioned in the tweet. The following lists the features of the interactive mode with examples.
+	<ol>
+	<li>
+		Subscribe to various tags to refine URL and user recommendations.
+		<br/>@bitlyminous subscribe java mapreduce
+	</li>
+	<li>
+		Search nearby locations for keywords or find tips. The user must be sharing their location with Twitter.
+		<br/>@bitlyminous nearby
+		<br/>@bitlyminous nearby coffee
+	</li>
+	<li>
+		Post a status update on behalf of the user which is based on the history of URLs posted by the user.
+		<br/>@bitlyminous tweetforme
+	</li>
+	<li>
+		Search the web for any text/keyword.
+		<br/>@bitlyminous whats the best tutorial about java?
+	</li>
+	</ol>
+	</p>
+	<p>
+	This application is open source with Apache 2.0 License. You can fork the github repo from <a href="https://github.com/nabeelmukhtar/bitlyminous">https://github.com/nabeelmukhtar/bitlyminous</a>.
+	</p>    
+  </body>
+</html>

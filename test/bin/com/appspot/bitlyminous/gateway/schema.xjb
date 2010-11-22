@@ -1,0 +1,15 @@
+<bindings version="2.0" xmlns="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    extensionBindingPrefixes="xjc"
+    schemaLocation="delicious-api.xsd" node="/xs:schema">
+	<globalBindings localScoping="toplevel">
+		<javaType name="double" xmlType="xs:double"/>
+		<javaType name="long" xmlType="xs:integer"/>
+		<xjc:serializable uid="2461660169443089969"/>
+		<xjc:superClass name="Entity"/>
+	</globalBindings>
+    <schemaBindings>
+      <package name="com.appspot.bitlyminous.entity" />
+    </schemaBindings>
+</bindings>

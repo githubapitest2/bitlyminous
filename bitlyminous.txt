@@ -1,0 +1,365 @@
+https://nabeelmukhtar@bitbucket.org/nabeelmukhtar/bitlyminous
+
+bitlyminous
+
+http://code.google.com/p/bitly-api/
+http://blog.bit.ly/post/1307062006/its-a-bit-ly-api-contest
+http://blog.bit.ly/post/76203780/bit-ly-api-contest-winners
+http://mashable.com/2009/04/05/url-shorteners/
+http://github.com/blog/489-github-contest-winners
+http://www.wired.com/epicenter/2009/07/twitter-url-service-bitly-says-no-to-ads-yes-to-data-mining-news/
+http://feedback.bit.ly/forums/5239-suggestions
+http://gigaom.com/2009/03/31/why-bitly-could-upstage-digg/
+http://p8g.tw/?JS6
+http://blog.bit.ly/post/263859706/spam-and-malware-protection
+http://www.socialsignal.com/blog/alexandra-samuel/3-great-options-twitter-and-delicious-integration
+http://techcrunch.com/2009/08/04/delicious-freshens-up-with-twitter-which-its-founder-hates/
+
+http://code.google.com/apis/safebrowsing/
+http://code.google.com/apis/safebrowsing/developers_guide_v2.html
+http://code.google.com/p/jgooglesafebrowsing/
+
+http://www.delicious.com/help/api
+http://www.delicious.com/help/json
+	https://api.del.icio.us/v1/posts/suggest
+http://developers.digg.com/
+Google Sidewiki API	
+
+write a twitter and chat bot that scans the firends and user tweets for bitly urls and then sends related urls. also sends url stats via dm (XXX - if not exists for send instructions for tweetdeck. - XXX).
+**** if the url is a map url, send neaby locations - integrate with foursquare (tips, nearby locations etc.) and/or google maps.
+retweet related tweets.
+use delicious suggest to suggest tags then suggest tweets and persons to follow. #FF
+**** flag as inapprorpiate if a link is malware or not active.
+search twitter for keywords and popular links.
+add to delicious if user has signed up.
+
+search public timeline for urls and see if they are friends in the users list. if they are alert warning copying all the users. no need for auth.
+**** show a homepage for connecting with delicious, twitter, foursquare etc.
+
+in the weekly stats also show the number of urls added to delicious.
+
+do some cool stuff with geocoding.
+**** do some stuff like pagetweet.
+
+ranking based on favorites, retweets and users own tweets and delicious data.
+
+see if you need the user to authenticate via twitter.
+
+**** translation.
+
+http://blog.stevepoland.com/how-to-create-a-twitter-bot/
+
+
+contest@bit.ly
+
+Twitter
+=======
+http://twitter.com/oauth_clients/details/486145
+key: 671O1zUicFBCYHHYVp0XA
+secret: cP7WvfAtxXGSaf1Sz0ksZtWGcENosFcRr46WR7a9jU
+username: bitlyminous password: olympic99
+use streaming api.
+hadoop filter:links
+
+Bitly
+=====
+username: bitlyminous
+api key: R_1ff9cacf41194bcaa13b8ca7ba0985d9
+app name: bitlyminous
+client_id: 07cad2ebb5ed750e24c267d3d75362087d7b6133
+client_secret: 3a0a23813902eefe57ce300baba4d2b1fda616ed
+
+Foursquare:
+==========
+Application Name: bitlyminous
+Callback URL: http://bitlyminous.appspot.com/Auth?command=FoursquareAuth
+Key: LPPTFHJP44SOFPRJFPD4QXM2V2IMYAOHEVYYS34Z0A4L5HUD
+Secret: KT1WFLDJ0ZSE1XQTFC13L3MOTI32B0VBSH1CI0WP0W1J1UWH
+
+Appengine:
+==========
+https://appengine.google.com/dashboard/nonedeployed?app_id=bitlyminous
+http://bitlyminous.appspot.com
+
+cron jobs
+http://code.google.com/appengine/docs/java/config/cron.html
+mail
+http://code.google.com/appengine/docs/java/mail/receiving.html
+http://groups.google.com/group/google-appengine-java/browse_thread/thread/b752cfa8116ba58d?hl=en#
+jpa
+http://code.google.com/appengine/docs/java/datastore/usingjpa.html
+uploading data
+http://code.google.com/appengine/docs/python/tools/uploadingdata.html
+task queues
+http://code.google.com/appengine/docs/java/taskqueue/overview.html
+
+Google safe browsing.
+====================
+Your key is:
+
+ABQIAAAAvK-Hosr7D1Kp6WTnrQEeehTZHb_jxy01d9W-LiCNV5YbDLHl0w
+
+Here are example URLs for phishing and malware to get you started:
+
+  http://sb.google.com/safebrowsing/update?client=api&apikey=ABQIAAAAvK-Hosr7D1Kp6WTnrQEeehTZHb_jxy01d9W-LiCNV5YbDLHl0w&version=goog-black-hash:1:-1
+
+  http://sb.google.com/safebrowsing/update?client=api&apikey=ABQIAAAAvK-Hosr7D1Kp6WTnrQEeehTZHb_jxy01d9W-LiCNV5YbDLHl0w&version=goog-malware-hash:1:-1
+  
+update library to not use file io and create appengine dao.
+
+Google Search
+=============
+**** Programmatically Creating Custom Search Engines
+http://code.google.com/apis/customsearch/docs/api.html
+  
+Though there is no limit on number of search engines that can be associated with an account, there is a limit of 5000 annotations per account. With this limit, you can add only a maximum of 5000 URL patterns in your sites configuration.  
+100 users : at least 10 urls each.
+oldest among all to be removed.
+
+Google static maps API.
+http://code.google.com/apis/maps/documentation/staticmaps/
+
+Delicious
+=========
+Use your own account. nabeelmukhtar, olympic99
+Use suggest api to get tags.
+Use json feeds to get recent and popular tag urls.  
+
+Yahoo App
+---------
+API Key: dj0yJmk9RU5ZVzlWbFRGTlE5JmQ9WVdrOVYyeFlWbGxLTjJFbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD04NQ--
+Secret: 7f6997b2aa4f230570fff6dd4cf106e234b28bf3
+App ID: WlXVYJ7a
+Application domain: bitlyminous.appspot.com
+
+libraries
+=========
+bitly.
+twitter.
+google search.
+google maps.
+yoreeka.
+lucene ??
+uclassify.
+
+
+Jive Gas
+http://bit.ly/dvoI - Uses the bit.ly API to shorten (and expand) URI to then do twitter, delicious, digg and yahoo boss searches (among others) for related and relevant content.
+
+Chirply
+http://bit.ly/gPcCb - It's a way to discover content and people relevant to your interests by browsing through bit.ly links being passed around Twitter.
+
+Tweetdeck version 0.30 now has a location for your bitly API key under settings->services->bitly
+
+**** Instead, he�s going to mine those links to create a real-time news service that would work somewhat like Twitter trends, except that it would track the hottest links rather than the most-used words. The result would be a Digg-like news service comprised of links determined to be important by bit.ly�s analysis engine.
+
+3. They can be transformed into social media services
+
+There was a good piece on GigaOM that discussed how Bit.ly could launch its own version of Digg. While this may or may not be Bit.ly�s eventual goal (just like Digg, a URL shortener could be gamed), it�s clear that the data that URL shorteners can accumulate, coupled with the rise of short URL sharing on Twitter and other websites, could amount to some innovative social media services that display popular links, rank domains, and act as a filter or aggregate of social media content.
+
+URL shorteners, in their own way, work as aggregates of information. This can lead to some useful mashups and innovations in how people share and digest content.
+
+# Google Safe Browsing: And this one comes straight from Google. It is a handy tool, which allows you to test a website which you think may not be genuine or distributing malware. In order to check it, you just need to type the following in your browser address bar - http://www.google.com/safebrowsing/diagnostic?site=<Your Target Website Address>. For example, if you want to check this website for malware, then you can use http://www.google.com/safebrowsing/diagnostic?site=pcsecurity.com.
+http://www.google.com/safebrowsing/diagnostic?site=http://www.google.com/tools/firefox/safebrowsing/phish-o-rama.html
+
+App Engine's implementation of the JavaMail interface includes a shortcut for sending
+an email message to all of the app's administrators. To send a message to all administrators,
+use a recipient address of "admins", with no @ symbol or domain name.
+
+http://malware.testing.google.test/testing/malware/
+http://googleonlinesecurity.blogspot.com/2009/06/top-10-malware-sites.html
+
+Twitter user suggestions using the api are worthless.
+
+
+SELECT 'hash' UNION SELECT hash INTO OUTFILE 'E:/workspace/opensource/bitlyminous/src/resources/data/malware.csv' FIELDS TERMINATED BY ',' ESCAPED BY '\\' LINES TERMINATED BY '\n' FROM malware;
+SELECT 'hash' UNION SELECT hash INTO OUTFILE 'E:/workspace/opensource/bitlyminous/src/resources/data/blacklist.csv' FIELDS TERMINATED BY ',' ESCAPED BY '\\' LINES TERMINATED BY '\n' FROM blacklist;
+
+java -jar D:\workspace\bitlyminous\dev-lib\trang.jar *.xml delicious-api.xsd
+xjc -p com.appspot.bitlyminous.entity -extension -no-header -b schema.xjb delicious-api.xsd
+
+schema
+blacklist
+malware
+user
+	twitterid, screen name, twitter token, twitter secret, delicious token, delicious secret, level (1-friend, 2-fof, 3-stranger), cse_id, tags
+url
+	userid, url, description/tweet, tags.
+	
+friend
+	userid1, userid2, status (confirmed, recommended), similarity
+	
+related
+	url1, url2, similarity
+version
+	lasttweet, malware, blacklist
+
+build google custom search engine for user.
+build a command interface. interface to all api methods.
+@bitlyminous search hadoop.
+@bitlyminous subscribe java mapreduce
+@bitlyminous nearby coffee
+@bitlyminous whats the best tutorial about java?
+@bitlyminous #tweetforme
+
+in foursquaere if there is a search term, show nearby venues otherwise show tips.
+in delicious if the user signs p get user tags and save it in the database.
+
+Sites like reddit.com let you vote on links to other web sites and then use
+your votes to suggest other links you might find interesting.
+http://code.reddit.com/wiki/API
+
+if a link is submitted multiple times, increase its vote count.
+
+twitter geo and streaming apis.
+
+
+Similarity algorithm:
+=====================
+link tweeted +1
+tag +1, +2, +3
+
+use tags to compute scores.
+
+
+Algorithms
+==========
+Check home timeline.
+	For any friend posting bit.ly link.
+		add to database
+		scan link for malware
+		if bad
+			send warning as a reply tweet.
+		else
+			get suggested tags from delicious.
+			get similar urls (with similar tags) from delicious
+			send related urls as a reply tweet.
+			search timeline for tags.
+			send found tweet as a reply tweet.
+			if the user is registered on deliicious
+				add url to delicious.
+			add to google cse.
+		
+Search for tweets containing bit.ly links.
+	add user to database
+	add url to database
+	scan link for malware
+	if bad
+		see if the user's followers exist in the user table.
+		if yes
+			send them warning as a mention tweet.
+	get suggested tags from delicious
+
+
+find similar users
+	use tags as items.
+	any link submitted get its popular tags.
+	increase the tag rating for each user based on the link.
+	use user based similarity to find similar users.
+
+find similar links
+	again use tag weights.
+	
+create lists to aid in classification.	
+search is throwing exception.	
+
+http://bitlyminous.appspot.com/Main?command=uploadSafeBrowsingData&blacklistMinor=70700&blacklistMajor=1&malwareMinor=28323&malwareMajor=1
+http://localhost:8888/Main?command=uploadSafeBrowsingData&blacklistMinor=70700&blacklistMajor=1&malwareMinor=28323&malwareMajor=1
+appcfg.py create_bulkloader_config --filename=bulkloader.yaml --url=http://bitlyminous.appspot.com/remote_api
+appcfg.py upload_data --config_file=bulkloader.yaml --filename=blacklist.csv --kind=BLACKLIST --url=http://bitlyminous.appspot.com/remote_api
+appcfg.py upload_data --config_file=bulkloader.yaml --filename=malware.csv --kind=MALWARE --url=http://bitlyminous.appspot.com/remote_api
+
+twitter status already includes an array of urls with expanded ones too.
+
+in warning messages add annotations to break workflow. http://dev.twitter.com/pages/annotations_overview
+create twitter lists baesed on user tags.
+
+data mining will have to be done in chunks or offline as it will take more than 30 seconds.
+
+delicious token expires in 1 hour. http://www.codeproject.com/KB/cs/Delicious-OAuth-API.aspx?msg=3517561
+
+
+Tasks for weekend 13-14 Nov, 2010
+=================================
+X. 1. Implement all gateways.
+2. implement and decide data mining algos for url similarity, user similarity and tweet similarity.
+4. write twitter service, user service, url service.
+6. Finalize resource messages and status builders and TODOs.
+X. 8. Fix versioning and data model.. 
+5. implement and decide maintenance params.
+X. 3. refactor. change package name + class structure. include services, dao, handlers.  com.appspot.bitlyminous
+X. 7. Authentication flows for delicious, twitter. etc. Major problem. https://github.com/yusuke/sign-in-with-twitter
+X. 9. rerun jautodoc.
+10. Google similar search.
+11. Google custom search with twitter as the site. http://www.google.com/cse/home?cx=015203706368483719477:9i7v8-cpitu
+12. http://search.twitter.com/search.atom?q=java+filter%3Alinks+include%3Aretweets
+13. if the user signs up, check his friend stime line too. no trouble with rate limiting.
+
+Algorithms of the intelligent web. p. 49 and chapter 3.
+Programming collective intelligence. chapter 2.
+
+
+cron tasks.
+http://localhost:8888/cron/checkTweets
+http://localhost:8888/cron/checkMentions
+http://localhost:8888/cron/searchTweets
+http://localhost:8888/cron/sendRelatedTweets
+http://localhost:8888/cron/
+http://localhost:8888/cron/
+http://localhost:8888/cron/
+http://localhost:8888/cron/
+
+Testing spam link filtering. Dont click. http://bit.ly/9tdhzL
+
+
+Sending request to Delicious...https://api.login.yahoo.com/oauth/v2/get_token?oauth_nonce=3423rw3d&oauth_consumer_key=dj0yJmk9RU5ZVzlWbFRGTlE5JmQ9WVdrOVYyeFlWbGxLTjJFbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD04NQ--&oauth_signature_method=plaintext&oauth_signature=7f6997b2aa4f230570fff6dd4cf106e234b28bf3%262cf929568ed679a8d45b58d7679981620e50acc7&oauth_version=1.0&oauth_token=A%3DCchf3j_YiQOHyTwha4s45AZyvkf1VLvl.gPHhSO0.Nm6YO4FQIGt1ZwJQHG79FHpvIfiNhBIuHTt3GnuXb4iaukJZXiL9IBnJkNOGPwcUL_rnp8FAMdf0cttZZm7wAv2PVgSEYkugdxM6KTE1EaAJpdvf9RTDTjLyQIJbZ_z_YV_7s40sWRgxD5pvakasdcq5p.No.t5pwrzHxSeougLP4H9UOWZcjB0EAdKu8AkuSUvl447y7DbRIXOTUfCQhnjshHXA7IqJUU6KheFCkAVjsJNpUQAX1OyUQKFOjKZ7Jd_LVQUiYLgOftmVV6KNlfbXctVRf9MCumi4p92dJfK_9_stUIFYsFDEtZ5ApA5OTyMkWwc9kGa7RQ5rOJaWAbzcOIOp5ebDs7OrnMt8otyyxkqkPNeY5iVaXB17oLYE2WPFShgXl3HplYHTSojKLI0i6iPKymGOU441erVMWw1.46kc8szLIJnak_B1WBl7IUi_3n3aWpMwqKpt5_jPCNIplXazmBYRbmML7S1M84VO5l7G5.fVLda_oVazYctQ88JAwIRVB769lDMtEaVOS.h9RYZFwB28v._oekjI_HP1bzjo_U4LrnldlqPEftVESLISrTk.i_hV9u3AyI3nwDoD64_6oFvGgJmR2sg2LH5h4FQ1W6djnF2yEAP5eLzLvi.aAzI3DENxJwwflhxMPnCRQVXmzSmasZkTKqb6_ZPMXlm2MsoQOTFRED8atXtw.gD&oauth_timestamp=1289990579125&oauth_session_handle=AFe80kzF7SjpdJXa_ByRF69vtldMFY7MqT5hFyn2Q6W6IJeN5VX3rw--
+Response: 200 OK
+
+oauth_token=A%3D.P9KvU77hC14uoZf9ihAWg4gbFzCOM4HgHZi1hN7b2xTf28RmMpN7wb7L3QSN53xkZSJjoM3DKQW9anZ_tKIxzwyrc_RulA6G.LlipzzcqR.gcZwHmg5ZB0HgB5lwkzud5x4OaWo4iWQwcyHgBmFivm.afRcYCVtAezxDfNz.jcZBOTOV1V4M6pHJqFHoOTZ5.RVZZMKkGMeY8kfH081lDTW2eQTI4t9Ag69zIVoMJx15v.87j1_DWagIVeSTzwUHZoJTeyG8w.5N2KM5Lk2XUxw24pmcGQ3vMjFUu78RKFAQ67P3Rf0OJwKYmCLBfbTVtex3HjWtNvADO1V70arEDnoaQBj6KRdGSlKq1UfSd9JIFKpW2MWE8sMgSz.UKSOijP0fwSAgveo54Tb.5D_.JFFd1L0xVpMOiNfGuG9tPiGESakMpbbaHrBhq_RBV4F9W2BX8BEoAFM.emMb.Pg5BumYlYcKzPOLP_XO1itpEFyH3Exs7Oy0JN.lEfpGmDsUOlDQAV8kK1GScro8N_CzvMrYtH7i91_5HvRrqgScIyMXZOQLjU2Aul2tjWxhbq9we5yNJtM6SnUO3K4aENH9VJhmNHuHr1B6eLX9mDACvIPl6DKV4uKROeDbE0XcGQchabdRKUpdvOuuMUxrH7qspOfD_W45IFiOICAN8LjjezagKGVwseX5CqRTXBIGV_eCjPrmOjv3xxqs06WoPNcycjUhmzg9VGxhPGqcxAIfNRs&oauth_token_secret=a8ae106906d7340bdd01e167947c5a82c45fa173&oauth_expires_in=3600&oauth_session_handle=AFe80kzF7SjpdJXa_ByRF69vtldMFY7MqT5hFyn2Q6W6IJeN5VX3rw--&oauth_authorization_expires_in=857493068&xoauth_yahoo_guid=5TYKN2KYELF5MF7VB3BXBUVAMU
+
+TEST
+=====
+Its a war for talent. http://bit.ly/91WJ1Q
+Testting malware filter. Do not click. http://bit.ly/9tdhzL
+
+Hadoop Mapreduce Algorithms. http://atbrox.com/2010/05/08/mapreduce-hadoop-algorithms-in-academic-papers-may-2010-update/
+
+List of academic databases and search engines. http://en.wikipedia.org/wiki/List_of_academic_databases_and_search_engines
+
+
+
+
+use streaming api instead of search api. not possible.
+
+follow fofs. its not rate limited.
+url content matching
+
+bitlyminous (http://bitlyminous.appspot.com/) is a twitter bot that scans the user tweets for bitly urls and then sends related urls and tweets.
+To begin getting url and tweet recommendations the user has to follow @bitlyminous. 
+After that whenever the user posts a status containing a bitly url, the bot will first scan the url for malware and blacklisted sites using Google safe browsing API. This is an added protection as many malware sites not caught by bitly are caught by Google.
+If the url is safe, the bot will try to send a related url recommendation to the user. It will also send related tweets to the user.
+If the user signs up with bitlyminous using their twitter account, their friends timeline will also be scanned for malware and blacklisted sites and they will be alerted if any suspicious url is found.
+The user can also sign up for delicious and digg accounts, after which every bitly url they post will be added to their digg and delicious account as well.
+On each friday, the bot will send #FF recommendations of users that post similar urls/tweets.
+Also on each friday the bot will send the statistics of all the urls posted by the user as a DM.
+
+The bot also has an interactive mode which is activated whenever @bitlyminous is mentioned in the tweet. The following lists the features of the interactive mode with examples.
+
+1. Subscribe to various tags to refine url and user recommendations.
+@bitlyminous subscribe java mapreduce
+2. Search nearby locations for keywords or find tips. The user must be sharing their location with twitter.
+@bitlyminous nearby
+@bitlyminous nearby coffee
+3. Post a status update on behalf of the user which is based on the history of urls posted by the user.
+@bitlyminous tweetforme
+4. Search the web for any text/keyword.
+@bitlyminous whats the best tutorial about java?
+
+This application is open source with Apache 2.0 License. You can fork the github repo from https://github.com/nabeelmukhtar/bitlyminous.
+
+
+Send follow fridays
+Send nearby locations.
+Scans urls for malware.
+Retweet related tweets.
+Search, nearby, subscribe, tweetforme.

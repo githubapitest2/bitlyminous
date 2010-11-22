@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+  <cron>
+    <url>/cron/checkTweets</url>
+    <description>Check Twitter Feed every 1 minute</description>
+    <schedule>every 1 minutes</schedule>
+  </cron>
+  <cron>
+    <url>/cron/checkMentions</url>
+    <description>Check Twitter Mentions every 1 minute</description>
+    <schedule>every 1 minutes</schedule>
+  </cron>
+  <cron>
+    <url>/cron/searchTweets</url>
+    <description>Check Twitter Public Feed every 1 minute</description>
+    <schedule>every 1 minutes</schedule>
+  </cron>
+  <cron>
+    <url>/cron/sendStatistics</url>
+    <description>Send url statistics every day</description>
+    <schedule>every day 00:00</schedule>
+  </cron>
+  <cron>
+    <url>/cron/sendFollowFriday</url>
+    <description>Send Follow Friday suggestions every friday</description>
+    <schedule>every friday 00:00</schedule>
+  </cron>
+  <cron>
+    <url>/cron/sendPopularLinks</url>
+    <description>Send popular links every day</description>
+    <schedule>every day 00:00</schedule>
+  </cron>
+  <cron>
+    <url>/cron/sendRelatedTweets</url>
+    <description>Send related tweets every hour</description>
+    <schedule>every 1 hours</schedule>
+  </cron>
+  <!-- 
+  <cron>
+    <url>/cron/updateSafeBrowsingData</url>
+    <description>Update malware and black lists from Google</description>
+    <schedule>every 30 minutes</schedule>
+  </cron>
+   -->
+  <cron>
+    <url>/cron/runMaintenance</url>
+    <description>Runs maintenance every day at 3AM</description>
+    <schedule>every day 03:00</schedule>
+  </cron>
+</cronentries>

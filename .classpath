@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="bin/" kind="src" output="test/bin" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-codec-1.4.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gson.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/bitlyj-2.0.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/google-ajax-apis.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/google-maps-apis.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/twitter4j-core-2.1.7-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="dev-lib/mysql-connector-java-5.0.5-bin.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/signpost-core-1.2.1.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/google-api-client-1.2.1-alpha.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jgooglesafebrowser-0.1a.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/kxml2-2.3.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/lucene-analyzers-2.3.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/lucene-core-2.3.0.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/lucene-memory-2.3.0.jar"/>
+	<classpathentry kind="lib" path="dev-lib/junit-4.5.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/iweb2.jar"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>
