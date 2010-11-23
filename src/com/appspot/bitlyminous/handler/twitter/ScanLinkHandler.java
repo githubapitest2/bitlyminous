@@ -51,12 +51,12 @@ public class ScanLinkHandler extends AbstractTwitterHandler {
 				GoogleSafeBrowsingGateway gateway = getGoogleSafeBrowsingGateway();
 				for (Url url : longUrls) {
 					if (gateway.isBlacklisted(url.getLongUrl())) {
-						StatusUpdate reply = new StatusUpdate(ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.badurl", new String[] {"@" + tweet.getUser().getScreenName(), trimText(tweet.getText(), 50)}));
+						StatusUpdate reply = new StatusUpdate(ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.badurl", new String[] {"@" + tweet.getUser().getScreenName(), trimText(tweet.getText(), 20), ApplicationConstants.GOOGLE_SAFE_BROWSING_REF_URL}));
 						reply.setInReplyToStatusId(tweet.getId());
 						return reply;
 					}
 					if (gateway.isMalwarelisted(url.getLongUrl())) {
-						StatusUpdate reply = new StatusUpdate(ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.badurl", new String[] {"@" + tweet.getUser().getScreenName(), trimText(tweet.getText(), 50)}));
+						StatusUpdate reply = new StatusUpdate(ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.badurl", new String[] {"@" + tweet.getUser().getScreenName(), trimText(tweet.getText(), 20), ApplicationConstants.GOOGLE_SAFE_BROWSING_REF_URL}));
 						reply.setInReplyToStatusId(tweet.getId());
 						return reply;
 					}

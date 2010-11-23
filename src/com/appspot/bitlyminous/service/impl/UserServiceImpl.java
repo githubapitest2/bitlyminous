@@ -41,7 +41,9 @@ public class UserServiceImpl extends BaseService implements UserService {
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("screenName", screenName);
 			User user = getDao(entityManager).getSingleResult(User.class, NamedQueries.FIND_USER_BY_SCREEN_NAME, parameters);
-			populateUser(user);
+			if (user != null) {
+				populateUser(user);
+			}
 			return user;
 		} finally {
 			closeEntityManager(entityManager);

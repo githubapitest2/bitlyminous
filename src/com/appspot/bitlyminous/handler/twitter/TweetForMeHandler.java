@@ -38,7 +38,6 @@ import com.appspot.bitlyminous.entity.Tag;
 import com.appspot.bitlyminous.entity.Tags;
 import com.appspot.bitlyminous.entity.Url;
 import com.appspot.bitlyminous.entity.User;
-import com.appspot.bitlyminous.entity.Version;
 import com.appspot.bitlyminous.gateway.DeliciousGateway;
 import com.appspot.bitlyminous.gateway.DiggGateway;
 import com.appspot.bitlyminous.gateway.GatewayFactory;
@@ -101,7 +100,7 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 	 */
 	private String buildStatus(List<Url> urls, Tags tags) {
 		if (tags != null) {
-			DeliciousGateway deliciousGateway = getDeliciousGateway(context.getVersion());
+			DeliciousGateway deliciousGateway = getDeliciousGateway();
 			DiggGateway diggGateway = getDiggGateway();
 			urls = topUrls(urls, 3);
 			List<Tag> tagList = topTags(tags.getTag(), 3);
@@ -109,12 +108,18 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 				WebSearchQuery googleQuery = getGoogleWebSearchQuery();
 				googleQuery.withRelatedSite(entity.getUrl());
 				List<Url> relatedUrls = new ArrayList<Url>();
-				for (Tag tag : tagList) {
-					relatedUrls.addAll(deliciousGateway.getPopularUrls(tag.getTag()));
-					relatedUrls.addAll(convertToUrls(diggGateway.getPopularStories(tag.getTag(), 5)));
-					relatedUrls.addAll(convertToUrls(googleQuery.withQuery(tag.getTag()).list()));
+				if (!tagList.isEmpty()) {
+					for (Tag tag : tagList) {
+						try {
+							relatedUrls.addAll(deliciousGateway.getPopularUrls(tag.getTag()));
+							relatedUrls.addAll(convertToUrls(diggGateway.getPopularStories(tag.getTag(), 5)));
+						} catch (Exception e) {
+							logger.log(Level.WARNING, "Error while getting related urls.", e);
+						}
+					}
+					relatedUrls.addAll(convertToUrls(googleQuery.withQuery(createQuery(tagList)).list()));
+					relatedUrls = getBestMatches(entity, relatedUrls, 1);
 				}
-				relatedUrls = getBestMatches(entity, relatedUrls, 1);
 				
 				if (!relatedUrls.isEmpty()) {
 					StringBuilder builder = new StringBuilder();
@@ -196,11 +201,11 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 	 * 
 	 * @return the delicious gateway
 	 */
-	protected DeliciousGateway getDeliciousGateway(Version version) {
+	protected DeliciousGateway getDeliciousGateway() {
 		return GATEWAY_FACTORY.createDeliciousGateway(ApplicationConstants.DELICIOUS_CONSUMER_KEY,
 				ApplicationConstants.DELICIOUS_CONSUMER_SECRET,
-				version.getDeliciousToken().getValue(),
-				version.getDeliciousSecret().getValue());
+				"dummy-access-token",
+				"dummy-token-secret");
 	}
 	
 	/**
@@ -244,5 +249,17 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 			urls.add(url);
 		}
 		return urls;
+	}
+	
+	private String createQuery(List<Tag> tags) {
+		StringBuilder builder = new StringBuilder();
+		boolean first = true;
+		for (Tag tag : tags) {
+			if (!first) {
+				builder.append(" OR ");
+			}
+			builder.append(tag.getTag());
+		}
+		return builder.toString();
 	}
 }

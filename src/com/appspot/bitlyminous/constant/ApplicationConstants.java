@@ -109,6 +109,9 @@ public final class ApplicationConstants {
     /** The Constant GOOGLE_SAFE_BROWSING_API_KEY. */
     public static final String GOOGLE_SAFE_BROWSING_API_KEY = getProperty("com.appspot.bitlyminous.googlesafebrowsing.key");
     
+    /** The Constant GOOGLE_SAFE_BROWSING_REF_URL. */
+	public static final String GOOGLE_SAFE_BROWSING_REF_URL = getProperty("com.appspot.bitlyminous.googlesafebrowsing.refUrl");
+    
     /** The Constant DELICIOUS_CONSUMER_KEY. */
     public static final String DELICIOUS_CONSUMER_KEY = getProperty("com.appspot.bitlyminous.delicious.consumerKey");
 
@@ -215,6 +218,7 @@ public final class ApplicationConstants {
 
     /** The Constant CONTENT_ENCODING. */
 	public static final String CONTENT_ENCODING = getProperty("com.appspot.bitlyminous.content.encoding");
+
 
     /**
      * Instantiates a new application constants.

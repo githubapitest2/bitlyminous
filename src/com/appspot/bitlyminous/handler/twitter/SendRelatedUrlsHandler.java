@@ -64,16 +64,18 @@ public class SendRelatedUrlsHandler extends AbstractTwitterHandler {
 				googleQuery.withRelatedSite(entity.getUrl());
 				List<Url> relatedUrls = new ArrayList<Url>();
 				List<String> tags = entity.getTags();
-				for (String tag : tags) {
-					try {
-						relatedUrls.addAll(deliciousGateway.getPopularUrls(tag));
-						relatedUrls.addAll(convertToUrls(googleQuery.withQuery(tag).list()));
-						relatedUrls.addAll(convertToUrls(diggGateway.getPopularStories(tag, 5)));
-					} catch (Exception e) {
-						logger.log(Level.WARNING, "Error while getting related urls.", e);
+				if (!tags.isEmpty()) {
+					for (String tag : tags) {
+						try {
+							relatedUrls.addAll(deliciousGateway.getPopularUrls(tag));
+							relatedUrls.addAll(convertToUrls(diggGateway.getPopularStories(tag, 5)));
+						} catch (Exception e) {
+							logger.log(Level.WARNING, "Error while getting related urls.", e);
+						}
 					}
+					relatedUrls.addAll(convertToUrls(googleQuery.withQuery(createQuery(tags)).list()));
+					relatedUrls = getBestMatches(entity, relatedUrls, 2);
 				}
-				relatedUrls = getBestMatches(entity, relatedUrls, 2);
 				
 				if (!relatedUrls.isEmpty()) {
 					StatusUpdate reply = new StatusUpdate("@" + tweet.getUser().getScreenName() + " " + buildStatus(relatedUrls));
@@ -155,6 +157,18 @@ public class SendRelatedUrlsHandler extends AbstractTwitterHandler {
 			similarUrls.add(urlSimilarities.get(i).getKey());
 		}
 		return similarUrls;
+	}
+	
+	private String createQuery(List<String> tags) {
+		StringBuilder builder = new StringBuilder();
+		boolean first = true;
+		for (String tag : tags) {
+			if (!first) {
+				builder.append(" OR ");
+			}
+			builder.append(tag);
+		}
+		return builder.toString();
 	}
 
 	/**

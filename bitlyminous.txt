@@ -290,10 +290,10 @@ X. 8. Fix versioning and data model..
 X. 3. refactor. change package name + class structure. include services, dao, handlers.  com.appspot.bitlyminous
 X. 7. Authentication flows for delicious, twitter. etc. Major problem. https://github.com/yusuke/sign-in-with-twitter
 X. 9. rerun jautodoc.
-10. Google similar search.
-11. Google custom search with twitter as the site. http://www.google.com/cse/home?cx=015203706368483719477:9i7v8-cpitu
-12. http://search.twitter.com/search.atom?q=java+filter%3Alinks+include%3Aretweets
-13. if the user signs up, check his friend stime line too. no trouble with rate limiting.
+X. 10. Google similar search.
+X. 11. Google custom search with twitter as the site. http://www.google.com/cse/home?cx=015203706368483719477:9i7v8-cpitu
+N. 12. http://search.twitter.com/search.atom?q=java+filter%3Alinks+include%3Aretweets
+X. 13. if the user signs up, check his friend stime line too. no trouble with rate limiting.
 
 Algorithms of the intelligent web. p. 49 and chapter 3.
 Programming collective intelligence. chapter 2.
@@ -321,9 +321,7 @@ TEST
 =====
 Its a war for talent. http://bit.ly/91WJ1Q
 Testting malware filter. Do not click. http://bit.ly/9tdhzL
-
 Hadoop Mapreduce Algorithms. http://atbrox.com/2010/05/08/mapreduce-hadoop-algorithms-in-academic-papers-may-2010-update/
-
 List of academic databases and search engines. http://en.wikipedia.org/wiki/List_of_academic_databases_and_search_engines
 
 
@@ -331,7 +329,7 @@ List of academic databases and search engines. http://en.wikipedia.org/wiki/List
 
 use streaming api instead of search api. not possible.
 
-follow fofs. its not rate limited.
+N. follow fofs. its not rate limited.
 url content matching
 
 bitlyminous (http://bitlyminous.appspot.com/) is a twitter bot that scans the user tweets for bitly urls and then sends related urls and tweets.
@@ -363,3 +361,15 @@ Send nearby locations.
 Scans urls for malware.
 Retweet related tweets.
 Search, nearby, subscribe, tweetforme.
+
+
+
+SELECT 'hash' UNION SELECT hash INTO OUTFILE 'E:/workspace/opensource/bitlyminous/malware1.csv' FIELDS TERMINATED BY ',' ESCAPED BY '\\' LINES TERMINATED BY '\n' FROM malware where id > 0 and id <= 100000;
+SELECT 'hash' UNION SELECT hash INTO OUTFILE 'E:/workspace/opensource/bitlyminous/malware2.csv' FIELDS TERMINATED BY ',' ESCAPED BY '\\' LINES TERMINATED BY '\n' FROM malware where id > 100000 and id <= 200000;
+SELECT 'hash' UNION SELECT hash INTO OUTFILE 'E:/workspace/opensource/bitlyminous/malware3.csv' FIELDS TERMINATED BY ',' ESCAPED BY '\\' LINES TERMINATED BY '\n' FROM malware where id > 200000 and id <= 300000;
+SELECT 'hash' UNION SELECT hash INTO OUTFILE 'E:/workspace/opensource/bitlyminous/malware4.csv' FIELDS TERMINATED BY ',' ESCAPED BY '\\' LINES TERMINATED BY '\n' FROM malware where id > 300000 and id <= 400000;
+
+appcfg.py upload_data --config_file=bulkloader.yaml --filename=malware1.csv --kind=MALWARE --url=http://bitlyminous.appspot.com/remote_api
+appcfg.py upload_data --config_file=bulkloader.yaml --filename=malware2.csv --kind=MALWARE --url=http://bitlyminous.appspot.com/remote_api
+appcfg.py upload_data --config_file=bulkloader.yaml --filename=malware3.csv --kind=MALWARE --url=http://bitlyminous.appspot.com/remote_api
+appcfg.py upload_data --config_file=bulkloader.yaml --filename=malware4.csv --kind=MALWARE --url=http://bitlyminous.appspot.com/remote_api

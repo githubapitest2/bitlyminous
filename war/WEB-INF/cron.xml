@@ -17,8 +17,8 @@
   </cron>
   <cron>
     <url>/cron/sendStatistics</url>
-    <description>Send url statistics every day</description>
-    <schedule>every day 00:00</schedule>
+    <description>Send url statistics every friday</description>
+    <schedule>every friday 00:00</schedule>
   </cron>
   <cron>
     <url>/cron/sendFollowFriday</url>

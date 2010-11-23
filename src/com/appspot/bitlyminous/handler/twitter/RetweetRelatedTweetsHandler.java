@@ -122,7 +122,7 @@ public class RetweetRelatedTweetsHandler extends AbstractTwitterHandler {
 		boolean first = true;
 		for (String tag : tags) {
 			if (!first) {
-				builder.append(" ");
+				builder.append(" OR ");
 			}
 			builder.append(tag);
 		}
