@@ -31,6 +31,11 @@ import com.appspot.bitlyminous.entity.User;
  */
 public class AddUrlToGoogleCSEHandler extends AbstractTwitterHandler {
 
+	/**
+	 * Instantiates a new adds the url to google cse handler.
+	 * 
+	 * @param context the context
+	 */
 	public AddUrlToGoogleCSEHandler(TwitterContext context) {
 		super(context);
 	}

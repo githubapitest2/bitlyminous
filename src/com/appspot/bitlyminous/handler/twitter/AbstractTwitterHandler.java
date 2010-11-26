@@ -45,15 +45,28 @@ public abstract class AbstractTwitterHandler implements TwitterHandler {
 	/** The logger. */
 	protected final Logger logger = Logger.getLogger(getClass().getCanonicalName());
 	
+	/** The context. */
 	protected TwitterContext context;
 	
+	/** The command name. */
 	protected String commandName;
 	
 	
+	/**
+	 * Instantiates a new abstract twitter handler.
+	 * 
+	 * @param context the context
+	 */
 	public AbstractTwitterHandler(TwitterContext context) {
 		this.context = context;
 	}
 	
+	/**
+	 * Instantiates a new abstract twitter handler.
+	 * 
+	 * @param commandName the command name
+	 * @param context the context
+	 */
 	public AbstractTwitterHandler(String commandName, TwitterContext context) {
 		this.commandName = commandName;
 		this.context = context;
@@ -111,8 +124,9 @@ public abstract class AbstractTwitterHandler implements TwitterHandler {
 	}
 	
 	/**
+	 * Gets the google web search query.
 	 * 
-	 * @return
+	 * @return the google web search query
 	 */
 	protected WebSearchQuery getGoogleWebSearchQuery() {
 		GoogleSearchQueryFactory factory = GoogleSearchQueryFactory.newInstance(ApplicationConstants.GOOGLE_API_KEY);
@@ -131,6 +145,14 @@ public abstract class AbstractTwitterHandler implements TwitterHandler {
 		return factory.createUserService().getUserByScreenName(screenName);
 	}
 	
+	/**
+	 * Trim text.
+	 * 
+	 * @param original the original
+	 * @param length the length
+	 * 
+	 * @return the string
+	 */
 	protected String trimText(String original, int length) {
 		if (original == null) {
 			return null;
@@ -139,5 +161,16 @@ public abstract class AbstractTwitterHandler implements TwitterHandler {
 		} else {
 			return original.substring(0, length) + "...";
 		}
+	}
+	
+	/**
+	 * Checks if is empty.
+	 * 
+	 * @param text the text
+	 * 
+	 * @return true, if is empty
+	 */
+	protected boolean isEmpty(String text) {
+		return (text == null || text.trim().length() == 0);
 	}
 }

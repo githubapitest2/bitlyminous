@@ -29,6 +29,11 @@ import com.appspot.bitlyminous.entity.User;
  */
 public class SaveUserHandler extends AbstractTwitterHandler {
 
+	/**
+	 * Instantiates a new save user handler.
+	 * 
+	 * @param context the context
+	 */
 	public SaveUserHandler(TwitterContext context) {
 		super(context);
 	}

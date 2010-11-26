@@ -34,6 +34,9 @@ public class Friendship extends Bean {
 	 */
 	public static interface Status {
 		
+		/** The Constant NO_RELATION. */
+		public static final Long NO_RELATION = 0L;
+		
 		/** The Constant FRIEND. */
 		public static final Long FRIEND = 1L;
 		
@@ -54,7 +57,7 @@ public class Friendship extends Bean {
 	private User friend;
 	
 	/** The status. */
-	private Long status;
+	private Long status = Status.NO_RELATION;
 	
 	/** The similarity. */
 	private Double similarity;

@@ -11,6 +11,11 @@
     <schedule>every 1 minutes</schedule>
   </cron>
   <cron>
+    <url>/cron/importFriends</url>
+    <description>Import new friends every 1 minute</description>
+    <schedule>every 1 minutes</schedule>
+  </cron>
+  <cron>
     <url>/cron/searchTweets</url>
     <description>Check Twitter Public Feed every 1 minute</description>
     <schedule>every 1 minutes</schedule>
@@ -42,9 +47,11 @@
     <schedule>every 30 minutes</schedule>
   </cron>
    -->
+  <!--
   <cron>
     <url>/cron/runMaintenance</url>
     <description>Runs maintenance every day at 3AM</description>
     <schedule>every day 03:00</schedule>
   </cron>
+   -->
 </cronentries>

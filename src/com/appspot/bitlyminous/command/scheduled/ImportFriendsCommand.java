@@ -14,37 +14,28 @@
  * limitations under the License. 
  * 
  */
-package com.appspot.bitlyminous.command.mail;
+package com.appspot.bitlyminous.command.scheduled;
 
 import java.util.logging.Level;
 
-import javax.mail.Message;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * The Class TwitterMailCommand.
+ * The Class ImportFriendsCommand.
  */
-public class TwitterMailCommand extends AbstractMailCommand {
-
+public class ImportFriendsCommand extends TwitterScheduledCommand {
+	
 	/* (non-Javadoc)
-	 * @see com.appspot.bitlyminous.command.mail.MailCommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * @see com.appspot.bitlyminous.command.scheduled.ScheduledCommand#execute(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		logger.info("Executing command '" + getClass().getSimpleName() + "'.");
 		try {
-			Message message = getMessageFromRequest(req);
-			
-//			ServiceFactory factory = ServiceFactory.newInstance();
-//			
-//			factory.createTwitterService().importFriends();
-			
-			String toAddress = "admins";
-			
-			forwardMessage(message, toAddress);
+			SERVICE_FACTORY.createTwitterService().importFriends();
 		} catch (Exception e) {
-			logger.log(Level.SEVERE, "Error while forwarding email.", e);
-		} 
+			logger.log(Level.SEVERE, "Error while accessing timeline.", e);
+		}
 	}
 }

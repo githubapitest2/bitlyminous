@@ -44,6 +44,11 @@ public interface UrlService {
 	 */
 	public List<Url> getSimilarUrls(Url url, int count);
 	
+	/**
+	 * Save urls.
+	 * 
+	 * @param urls the urls
+	 */
 	public void saveUrls(List<Url> urls);
 
 }

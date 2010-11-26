@@ -46,6 +46,12 @@ import com.appspot.bitlyminous.gateway.MapMarker;
  */
 public class NearByHandler extends AbstractTwitterHandler {
 	
+	/**
+	 * Instantiates a new near by handler.
+	 * 
+	 * @param commandName the command name
+	 * @param context the context
+	 */
 	public NearByHandler(String commandName, TwitterContext context) {
 		super(commandName, context);
 	}

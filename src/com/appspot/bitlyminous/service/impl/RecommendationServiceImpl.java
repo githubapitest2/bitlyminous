@@ -49,6 +49,13 @@ import com.appspot.bitlyminous.service.RecommendationService;
 public class RecommendationServiceImpl extends BaseService implements
 		RecommendationService {
 
+	/**
+	 * Instantiates a new recommendation service impl.
+	 */
+	public RecommendationServiceImpl() {
+		super("recommendation-service");
+	}
+
 	/* (non-Javadoc)
 	 * @see com.appspot.bitlyminous.service.RecommendationService#getUrlSimilarities(com.appspot.bitlyminous.entity.Url, java.util.List)
 	 */
@@ -103,6 +110,14 @@ public class RecommendationServiceImpl extends BaseService implements
 		return similarities;
 	}
 	
+	/**
+	 * Creates the text data set.
+	 * 
+	 * @param refText the ref text
+	 * @param relatedTexts the related texts
+	 * 
+	 * @return the dataset
+	 */
 	protected Dataset createTextDataSet(String refText, List<String> relatedTexts) {
 		BaseDataset dataset = new BaseDataset();
 		dataset.addItem(createItemFromText(refText));
@@ -112,6 +127,14 @@ public class RecommendationServiceImpl extends BaseService implements
 		return dataset;
 	}
 
+	/**
+	 * Creates the url data set.
+	 * 
+	 * @param refUrl the ref url
+	 * @param urls the urls
+	 * 
+	 * @return the dataset
+	 */
 	protected Dataset createUrlDataSet(Url refUrl, List<Url> urls) {
 		BaseDataset dataset = new BaseDataset();
 		dataset.addItem(createItemFromUrl(refUrl));
@@ -121,6 +144,14 @@ public class RecommendationServiceImpl extends BaseService implements
 		return dataset;
 	}
 	
+	/**
+	 * Creates the user data set.
+	 * 
+	 * @param refUser the ref user
+	 * @param users the users
+	 * 
+	 * @return the dataset
+	 */
 	protected Dataset createUserDataSet(User refUser, List<User> users) {
 		BaseDataset dataset = new BaseDataset();
 		dataset.add(createUserFromUser(refUser));
@@ -130,10 +161,24 @@ public class RecommendationServiceImpl extends BaseService implements
 		return dataset;
 	}
 	
+	/**
+	 * Creates the item from url.
+	 * 
+	 * @param url the url
+	 * 
+	 * @return the item
+	 */
 	protected Item createItemFromUrl(Url url) {
 		return new ContentItem(url.getUrl().hashCode(), url.getUrl(), new Content("url-" + url.getUrl().hashCode(), getUrlContent(url)));
 	}
 	
+	/**
+	 * Creates the url from item.
+	 * 
+	 * @param item the item
+	 * 
+	 * @return the url
+	 */
 	protected Url createUrlFromItem(Item item) {
 		ContentItem contentItem = (ContentItem) item;
 		Url url = new Url();
@@ -143,14 +188,35 @@ public class RecommendationServiceImpl extends BaseService implements
 		return url;
 	}
 	
+	/**
+	 * Creates the item from text.
+	 * 
+	 * @param text the text
+	 * 
+	 * @return the item
+	 */
 	protected Item createItemFromText(String text) {
 		return new ContentItem(text.hashCode(), "item-" + text.hashCode(), new Content("text-" + text.hashCode(), text));
 	}
 
+	/**
+	 * Creates the text from item.
+	 * 
+	 * @param item the item
+	 * 
+	 * @return the string
+	 */
 	protected String createTextFromItem(Item item) {
 		return ((ContentItem) item).getItemContent().getText();
 	}
 	
+	/**
+	 * Creates the user from user.
+	 * 
+	 * @param user the user
+	 * 
+	 * @return the iweb2.ch3.collaborative.model. user
+	 */
 	protected iweb2.ch3.collaborative.model.User createUserFromUser(User user) {
 		iweb2.ch3.collaborative.model.User model = new iweb2.ch3.collaborative.model.User(user.getId().hashCode(), user.getScreenName());
 		if (user.getTags() != null) {
@@ -161,12 +227,26 @@ public class RecommendationServiceImpl extends BaseService implements
 		return model;
 	}
 	
+	/**
+	 * Creates the user from user.
+	 * 
+	 * @param user the user
+	 * 
+	 * @return the user
+	 */
 	protected User createUserFromUser(iweb2.ch3.collaborative.model.User user) {
 		User entity = new User();
 		entity.setScreenName(user.getName());
 		return entity;
 	}
 	
+	/**
+	 * Gets the url content.
+	 * 
+	 * @param url the url
+	 * 
+	 * @return the url content
+	 */
 	protected String getUrlContent(Url url) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(url.getDescription());
@@ -179,6 +259,11 @@ public class RecommendationServiceImpl extends BaseService implements
 		return builder.toString();
 	}
 
+	/**
+	 * The main method.
+	 * 
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		RecommendationService service = new RecommendationServiceImpl();
 		String[] relatedTexts = {"An introduction to Hadoop - ThinkPHP /dev/blog", "Welcome to Apache Hadoop!", "Apache Mahout:: Scalable machine-learning and data-mining library", "Distributed data processing with Hadoop, Part 3: Application development", "Programming Hadoop with Clojure", "Scaling Big Time with Hadoop", "Getting Started on Hadoop"};

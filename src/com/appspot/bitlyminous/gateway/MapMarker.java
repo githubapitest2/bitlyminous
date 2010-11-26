@@ -37,8 +37,10 @@ public class MapMarker implements Serializable {
 		
 		/** The red. */
 		red, 
+ 
  /** The green. */
  green, 
+ 
  /** The blue. */
  blue
 	}// enum MarkerColor

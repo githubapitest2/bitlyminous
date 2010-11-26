@@ -49,7 +49,7 @@ import com.googleapis.ajax.services.WebSearchQuery;
 
 
 /**
- * The Class AddUrlToGoogleCSEHandler.
+ * The Class TweetForMeHandler.
  */
 public class TweetForMeHandler extends AbstractTwitterHandler {
 	
@@ -57,6 +57,12 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 	private static final GatewayFactory GATEWAY_FACTORY = GatewayFactory.newInstance();
 	
 
+	/**
+	 * Instantiates a new tweet for me handler.
+	 * 
+	 * @param commandName the command name
+	 * @param context the context
+	 */
 	public TweetForMeHandler(String commandName, TwitterContext context) {
 		super(commandName, context);
 	}
@@ -93,10 +99,12 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 	}
 
 	/**
+	 * Builds the status.
 	 * 
-	 * @param urls
-	 * @param tags
-	 * @return
+	 * @param urls the urls
+	 * @param tags the tags
+	 * 
+	 * @return the string
 	 */
 	private String buildStatus(List<Url> urls, Tags tags) {
 		if (tags != null) {
@@ -134,6 +142,14 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 		return null;
 	}
 	
+	/**
+	 * Top tags.
+	 * 
+	 * @param tags the tags
+	 * @param count the count
+	 * 
+	 * @return the list< tag>
+	 */
 	private List<Tag> topTags(List<Tag> tags, int count) {
 		Collections.sort(tags, new Comparator<Tag>() {
 			@Override
@@ -150,6 +166,14 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 		return retValue;
 	}
 
+	/**
+	 * Top urls.
+	 * 
+	 * @param urls the urls
+	 * @param count the count
+	 * 
+	 * @return the list< url>
+	 */
 	private List<Url> topUrls(List<Url> urls, int count) {
 		Collections.sort(urls, new Comparator<Url>() {
 			@Override
@@ -168,6 +192,9 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 
 	/**
 	 * Gets the twitter client.
+	 * 
+	 * @param token the token
+	 * @param tokenSecret the token secret
 	 * 
 	 * @return the twitter client
 	 */
@@ -197,7 +224,6 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 
 	/**
 	 * Gets the delicious gateway.
-	 * @param version 
 	 * 
 	 * @return the delicious gateway
 	 */
@@ -220,6 +246,13 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 				ApplicationConstants.DIGG_ACCESS_TOKEN_SECRET);
 	}
 	
+	/**
+	 * Convert to urls.
+	 * 
+	 * @param results the results
+	 * 
+	 * @return the list< url>
+	 */
 	private List<Url> convertToUrls(PagedList<WebResult> results) {
 		List<Url> urls = new ArrayList<Url>();
 		for (WebResult result : results) {
@@ -251,6 +284,13 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 		return urls;
 	}
 	
+	/**
+	 * Creates the query.
+	 * 
+	 * @param tags the tags
+	 * 
+	 * @return the string
+	 */
 	private String createQuery(List<Tag> tags) {
 		StringBuilder builder = new StringBuilder();
 		boolean first = true;
@@ -259,6 +299,7 @@ public class TweetForMeHandler extends AbstractTwitterHandler {
 				builder.append(" OR ");
 			}
 			builder.append(tag.getTag());
+			first = false;
 		}
 		return builder.toString();
 	}

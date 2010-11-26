@@ -31,6 +31,13 @@ import com.appspot.bitlyminous.service.UrlService;
  */
 public class UrlServiceImpl extends BaseService implements UrlService {
 
+	/**
+	 * Instantiates a new url service impl.
+	 */
+	public UrlServiceImpl() {
+		super("url-service");
+	}
+
 	/* (non-Javadoc)
 	 * @see com.appspot.bitlyminous.service.UrlService#getUrlByHash(java.lang.String)
 	 */
@@ -59,6 +66,9 @@ public class UrlServiceImpl extends BaseService implements UrlService {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.appspot.bitlyminous.service.UrlService#saveUrls(java.util.List)
+	 */
 	@Override
 	public void saveUrls(List<Url> urls) {
 		EntityManager entityManager = createEntityManager();

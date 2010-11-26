@@ -43,6 +43,11 @@ import com.rosaloves.bitlyj.Url;
  */
 public class SaveUrlHandler extends AbstractTwitterHandler {
 	
+	/**
+	 * Instantiates a new save url handler.
+	 * 
+	 * @param context the context
+	 */
 	public SaveUrlHandler(TwitterContext context) {
 		super(context);
 	}
@@ -61,31 +66,33 @@ public class SaveUrlHandler extends AbstractTwitterHandler {
 				Set<Url> longUrls = getBitlyClient().call(Bitly.expand(shortUrls.toArray(new String[shortUrls.size()])));
 				List<com.appspot.bitlyminous.entity.Url> entities = new ArrayList<com.appspot.bitlyminous.entity.Url>();
 				for (Url url : longUrls) {
-					com.appspot.bitlyminous.entity.Url entity = new com.appspot.bitlyminous.entity.Url();
-					entity.setDescription(tweet.getText());
-					entity.setUrl(url.getLongUrl());
-					entity.setShortUrl(url.getShortUrl());
-					entity.setDateSubmitted(tweet.getCreatedAt());
-					List<String> suggestedTags = new ArrayList<String>();
-					DeliciousGateway deliciousGateway = getDeliciousGateway(context.getVersion());
-					try {
-						suggestedTags = deliciousGateway.getSuggestedTags(url.getLongUrl());
-					} catch (GatewayException e) {
-						logger.log(Level.WARNING, "Seems like Delicious token expired again.", e);
-						if (e.getErrorCode() == HttpURLConnection.HTTP_UNAUTHORIZED) {
-							deliciousGateway.refreshToken(context.getVersion().getDeliciousSessionHandle().getValue());
-							context.getVersion().setDeliciousToken(new Text(deliciousGateway.getOAuthAuthentication().getAccessToken()));
-							context.getVersion().setDeliciousSecret(new Text(deliciousGateway.getOAuthAuthentication().getAccessTokenSecret()));
-							context.getVersion().setDeliciousSessionHandle(new Text(deliciousGateway.getOAuthAuthentication().getOauthSessionHandle()));
+					if (!isEmpty(url.getLongUrl())) {
+						com.appspot.bitlyminous.entity.Url entity = new com.appspot.bitlyminous.entity.Url();
+						entity.setDescription(tweet.getText());
+						entity.setUrl(url.getLongUrl());
+						entity.setShortUrl(url.getShortUrl());
+						entity.setDateSubmitted(tweet.getCreatedAt());
+						List<String> suggestedTags = new ArrayList<String>();
+						DeliciousGateway deliciousGateway = getDeliciousGateway(context.getVersion());
+						try {
 							suggestedTags = deliciousGateway.getSuggestedTags(url.getLongUrl());
-						} else {
-							throw e;
+						} catch (GatewayException e) {
+							logger.log(Level.WARNING, "Seems like Delicious token expired again.", e);
+							if (e.getErrorCode() == HttpURLConnection.HTTP_UNAUTHORIZED) {
+								deliciousGateway.refreshToken(context.getVersion().getDeliciousSessionHandle().getValue());
+								context.getVersion().setDeliciousToken(new Text(deliciousGateway.getOAuthAuthentication().getAccessToken()));
+								context.getVersion().setDeliciousSecret(new Text(deliciousGateway.getOAuthAuthentication().getAccessTokenSecret()));
+								context.getVersion().setDeliciousSessionHandle(new Text(deliciousGateway.getOAuthAuthentication().getOauthSessionHandle()));
+								suggestedTags = deliciousGateway.getSuggestedTags(url.getLongUrl());
+							} else {
+								throw e;
+							}
 						}
+						entity.setTags(suggestedTags);
+						entity.setUser(context.getUser());
+						updateUserTags(context.getUser(), suggestedTags);
+						entities.add(entity);
 					}
-					entity.setTags(suggestedTags);
-					entity.setUser(context.getUser());
-					updateUserTags(context.getUser(), suggestedTags);
-					entities.add(entity);
 				}
 				context.setUrls(entities);
 				updateUserUrls(context.getUser(), entities);
@@ -97,6 +104,12 @@ public class SaveUrlHandler extends AbstractTwitterHandler {
 		return null;
 	}
 	
+	/**
+	 * Update user urls.
+	 * 
+	 * @param user the user
+	 * @param entities the entities
+	 */
 	private void updateUserUrls(User user, List<com.appspot.bitlyminous.entity.Url> entities) {
 		List<com.appspot.bitlyminous.entity.Url> urls = user.getUrls();
 		for (com.appspot.bitlyminous.entity.Url url: entities) {
@@ -105,6 +118,12 @@ public class SaveUrlHandler extends AbstractTwitterHandler {
 //		user.setUrls(urls);
 	}
 
+	/**
+	 * Update user tags.
+	 * 
+	 * @param user the user
+	 * @param suggestedTags the suggested tags
+	 */
 	private void updateUserTags(User user, List<String> suggestedTags) {
 		Tags tags = user.getTags();
 		if (tags == null) {
@@ -131,6 +150,8 @@ public class SaveUrlHandler extends AbstractTwitterHandler {
 
 	/**
 	 * Gets the delicious gateway.
+	 * 
+	 * @param version the version
 	 * 
 	 * @return the delicious gateway
 	 */

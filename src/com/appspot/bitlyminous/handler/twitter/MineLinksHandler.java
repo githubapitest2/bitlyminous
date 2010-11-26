@@ -25,6 +25,12 @@ import twitter4j.StatusUpdate;
  */
 public class MineLinksHandler extends AbstractTwitterHandler {
 
+	/**
+	 * Instantiates a new mine links handler.
+	 * 
+	 * @param commandName the command name
+	 * @param context the context
+	 */
 	public MineLinksHandler(String commandName, TwitterContext context) {
 		super(commandName, context);
 	}

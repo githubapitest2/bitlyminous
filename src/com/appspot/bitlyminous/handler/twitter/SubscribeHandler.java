@@ -32,6 +32,12 @@ import com.appspot.bitlyminous.entity.User;
  */
 public class SubscribeHandler extends AbstractTwitterHandler {
 
+	/**
+	 * Instantiates a new subscribe handler.
+	 * 
+	 * @param commandName the command name
+	 * @param context the context
+	 */
 	public SubscribeHandler(String commandName, TwitterContext context) {
 		super(commandName, context);
 	}
@@ -70,6 +76,14 @@ public class SubscribeHandler extends AbstractTwitterHandler {
 		return null;
 	}
 
+	/**
+	 * Checks if is existing.
+	 * 
+	 * @param tags the tags
+	 * @param newTag the new tag
+	 * 
+	 * @return true, if is existing
+	 */
 	protected boolean isExisting(List<Tag> tags, String newTag) {
 		for (Tag tag : tags) {
 			if (tag.getTag().equals(newTag)) {

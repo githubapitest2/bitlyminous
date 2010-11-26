@@ -193,7 +193,9 @@ public class Version extends Entity {
 	}
 
 	/**
-	 * @return the deliciousSessionHandle
+	 * Gets the delicious session handle.
+	 * 
+	 * @return the delicious session handle
 	 */
 	@Basic
 	public Text getDeliciousSessionHandle() {
@@ -201,14 +203,18 @@ public class Version extends Entity {
 	}
 
 	/**
-	 * @param deliciousSessionHandle the deliciousSessionHandle to set
+	 * Sets the delicious session handle.
+	 * 
+	 * @param deliciousSessionHandle the new delicious session handle
 	 */
 	public void setDeliciousSessionHandle(Text deliciousSessionHandle) {
 		this.deliciousSessionHandle = deliciousSessionHandle;
 	}
 
 	/**
-	 * @return the deliciousToken
+	 * Gets the delicious token.
+	 * 
+	 * @return the delicious token
 	 */
 	@Basic
 	public Text getDeliciousToken() {
@@ -216,14 +222,18 @@ public class Version extends Entity {
 	}
 
 	/**
-	 * @param deliciousToken the deliciousToken to set
+	 * Sets the delicious token.
+	 * 
+	 * @param deliciousToken the new delicious token
 	 */
 	public void setDeliciousToken(Text deliciousToken) {
 		this.deliciousToken = deliciousToken;
 	}
 
 	/**
-	 * @return the deliciousSecret
+	 * Gets the delicious secret.
+	 * 
+	 * @return the delicious secret
 	 */
 	@Basic
 	public Text getDeliciousSecret() {
@@ -231,7 +241,9 @@ public class Version extends Entity {
 	}
 
 	/**
-	 * @param deliciousSecret the deliciousSecret to set
+	 * Sets the delicious secret.
+	 * 
+	 * @param deliciousSecret the new delicious secret
 	 */
 	public void setDeliciousSecret(Text deliciousSecret) {
 		this.deliciousSecret = deliciousSecret;

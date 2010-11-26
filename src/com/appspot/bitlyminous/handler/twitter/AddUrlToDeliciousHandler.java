@@ -37,6 +37,11 @@ import com.google.appengine.api.datastore.Text;
  */
 public class AddUrlToDeliciousHandler extends AbstractTwitterHandler {
 	
+	/**
+	 * Instantiates a new adds the url to delicious handler.
+	 * 
+	 * @param context the context
+	 */
 	public AddUrlToDeliciousHandler(TwitterContext context) {
 		super(context);
 	}

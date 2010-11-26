@@ -43,6 +43,11 @@ import com.googleapis.ajax.services.WebSearchQuery;
  */
 public class SendRelatedUrlsHandler extends AbstractTwitterHandler {
 	
+	/**
+	 * Instantiates a new send related urls handler.
+	 * 
+	 * @param context the context
+	 */
 	public SendRelatedUrlsHandler(TwitterContext context) {
 		super(context);
 	}
@@ -90,6 +95,13 @@ public class SendRelatedUrlsHandler extends AbstractTwitterHandler {
 		return null;
 	}
 	
+	/**
+	 * Convert to urls.
+	 * 
+	 * @param results the results
+	 * 
+	 * @return the list< url>
+	 */
 	private List<Url> convertToUrls(PagedList<WebResult> results) {
 		List<Url> urls = new ArrayList<Url>();
 		for (WebResult result : results) {
@@ -159,6 +171,13 @@ public class SendRelatedUrlsHandler extends AbstractTwitterHandler {
 		return similarUrls;
 	}
 	
+	/**
+	 * Creates the query.
+	 * 
+	 * @param tags the tags
+	 * 
+	 * @return the string
+	 */
 	private String createQuery(List<String> tags) {
 		StringBuilder builder = new StringBuilder();
 		boolean first = true;
@@ -167,13 +186,15 @@ public class SendRelatedUrlsHandler extends AbstractTwitterHandler {
 				builder.append(" OR ");
 			}
 			builder.append(tag);
+			first = false;
 		}
 		return builder.toString();
 	}
 
 	/**
 	 * Gets the delicious gateway.
-	 * @param version 
+	 * 
+	 * @param version the version
 	 * 
 	 * @return the delicious gateway
 	 */

@@ -38,6 +38,7 @@ public class OAuthAuthentication implements Serializable {
 	/** The access token secret. */
 	private String accessTokenSecret;
 	
+	/** The oauth session handle. */
 	private String oauthSessionHandle;
 
 	/**
@@ -139,14 +140,18 @@ public class OAuthAuthentication implements Serializable {
 	}
 
 	/**
-	 * @return the oauthSessionHandle
+	 * Gets the oauth session handle.
+	 * 
+	 * @return the oauth session handle
 	 */
 	public String getOauthSessionHandle() {
 		return oauthSessionHandle;
 	}
 
 	/**
-	 * @param oauthSessionHandle the oauthSessionHandle to set
+	 * Sets the oauth session handle.
+	 * 
+	 * @param oauthSessionHandle the new oauth session handle
 	 */
 	public void setOauthSessionHandle(String oauthSessionHandle) {
 		this.oauthSessionHandle = oauthSessionHandle;

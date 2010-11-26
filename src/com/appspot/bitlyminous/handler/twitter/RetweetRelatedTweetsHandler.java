@@ -44,6 +44,11 @@ import com.googleapis.ajax.services.WebSearchQuery;
  */
 public class RetweetRelatedTweetsHandler extends AbstractTwitterHandler {
 
+	/**
+	 * Instantiates a new retweet related tweets handler.
+	 * 
+	 * @param context the context
+	 */
 	public RetweetRelatedTweetsHandler(TwitterContext context) {
 		super(context);
 	}
@@ -82,9 +87,12 @@ public class RetweetRelatedTweetsHandler extends AbstractTwitterHandler {
 
 
 	/**
-	 * @param tweet
-	 * @param relatedTweets
-	 * @return
+	 * Builds the status.
+	 * 
+	 * @param tweet the tweet
+	 * @param relatedTweets the related tweets
+	 * 
+	 * @return the string
 	 */
 	private String buildStatus(Status tweet, List<WebResult> relatedTweets) {
 		for (WebResult webResult : relatedTweets) {
@@ -98,9 +106,11 @@ public class RetweetRelatedTweetsHandler extends AbstractTwitterHandler {
 	}
 
 	/**
+	 * Gets the user from result.
 	 * 
-	 * @param url
-	 * @return
+	 * @param url the url
+	 * 
+	 * @return the user from result
 	 */
 	private String getUserFromResult(String url) {
 		Matcher matcher = ApplicationConstants.GOOGLE_API_TWITTER_PATTERN.matcher(url);
@@ -119,12 +129,14 @@ public class RetweetRelatedTweetsHandler extends AbstractTwitterHandler {
 	 */
 	private String createQuery(List<String> tags) {
 		StringBuilder builder = new StringBuilder();
+		builder.append("http://bit.ly ");
 		boolean first = true;
 		for (String tag : tags) {
 			if (!first) {
 				builder.append(" OR ");
 			}
 			builder.append(tag);
+			first = false;
 		}
 		return builder.toString();
 	}

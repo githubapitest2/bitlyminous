@@ -24,7 +24,7 @@ import javax.persistence.MappedSuperclass;
 import com.google.appengine.api.datastore.Key;
 
 /**
- * The Class Entity.
+ * The Class Bean.
  */
 @javax.persistence.Entity
 @MappedSuperclass

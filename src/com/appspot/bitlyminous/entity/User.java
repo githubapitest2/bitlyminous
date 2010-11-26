@@ -93,7 +93,7 @@ public class User implements Serializable {
 	
 	/** The level. */
 	@Basic
-	private Long level;
+	private Long level = Level.STRANGER;
 	
 	/** The search engine id. */
 	@Basic
@@ -111,6 +111,7 @@ public class User implements Serializable {
 	@javax.persistence.OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private List<Friendship> friendships = new ArrayList<Friendship>();
 	
+	/** The last friend feed id. */
 	@Basic
 	private Long lastFriendFeedId = 1L;
 	
@@ -399,14 +400,18 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @return the lastFriendFeedId
+	 * Gets the last friend feed id.
+	 * 
+	 * @return the last friend feed id
 	 */
 	public Long getLastFriendFeedId() {
 		return lastFriendFeedId;
 	}
 
 	/**
-	 * @param lastFriendFeedId the lastFriendFeedId to set
+	 * Sets the last friend feed id.
+	 * 
+	 * @param lastFriendFeedId the new last friend feed id
 	 */
 	public void setLastFriendFeedId(Long lastFriendFeedId) {
 		this.lastFriendFeedId = lastFriendFeedId;

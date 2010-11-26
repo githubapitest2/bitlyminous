@@ -26,6 +26,8 @@ import com.appspot.bitlyminous.dao.DataAccessObject;
 import com.appspot.bitlyminous.dao.EMF;
 import com.appspot.bitlyminous.dao.NamedQueries;
 import com.appspot.bitlyminous.entity.Version;
+import com.google.appengine.api.memcache.MemcacheService;
+import com.google.appengine.api.memcache.MemcacheServiceFactory;
 
 /**
  * The Class BaseService.
@@ -36,7 +38,19 @@ public abstract class BaseService {
 	protected static final DAOFactory DAO_FACTORY = DAOFactory.newInstance();
 	
 	/** The logger. */
-	protected final Logger logger = Logger.getLogger(getClass().getCanonicalName());	
+	protected final Logger logger = Logger.getLogger(getClass().getCanonicalName());
+	
+	/** The memcache. */
+	protected final MemcacheService memcache;
+	
+	/**
+	 * Instantiates a new base service.
+	 * 
+	 * @param namespace the namespace
+	 */
+	public BaseService(String namespace) {
+		memcache = MemcacheServiceFactory.getMemcacheService(namespace);
+	}
 
 	/**
 	 * Creates the entity manager.

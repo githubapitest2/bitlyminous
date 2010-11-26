@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * The Class FoursquareAuthenticationCommand.
+ * The Class LogoutAuthenticationCommand.
  */
 public class LogoutAuthenticationCommand extends
 		AbstractAuthenticationCommand {

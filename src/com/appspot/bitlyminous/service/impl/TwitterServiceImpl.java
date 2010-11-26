@@ -24,6 +24,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import twitter4j.PagableResponseList;
 import twitter4j.Paging;
 import twitter4j.ResponseList;
 import twitter4j.Status;
@@ -63,6 +64,13 @@ import com.rosaloves.bitlyj.Bitly.Provider;
  */
 public class TwitterServiceImpl extends BaseService implements TwitterService {
 	
+	/**
+	 * Instantiates a new twitter service impl.
+	 */
+	public TwitterServiceImpl() {
+		super("twitter-service");
+	}
+
 	/* (non-Javadoc)
 	 * @see com.appspot.bitlyminous.service.TwitterService#handleMentions()
 	 */
@@ -229,32 +237,43 @@ public class TwitterServiceImpl extends BaseService implements TwitterService {
 		try {
 			Twitter twitter = getTwitterClient();
 			UserService userService = ServiceFactory.newInstance().createUserService();
-			for (User user : twitter.getFollowersStatuses()) {
-				com.appspot.bitlyminous.entity.User entity = userService.getUserByScreenName(user.getScreenName());
-				if (entity == null) {
-					entity = new com.appspot.bitlyminous.entity.User();
-					entity.setScreenName(user.getScreenName());
-					entity.setLevel(com.appspot.bitlyminous.entity.User.Level.DIRECT_USER);
-					userService.updateUser(entity);
-					twitter.createFriendship(user.getScreenName());
-					twitter.sendDirectMessage(user.getScreenName(), ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.welcome"));
-					// following fofs will hit the limit soon.
-//					IDs friendsIDs = twitter.getFriendsIDs(user.getId());
-//					for (int id : friendsIDs.getIDs()) {
-//						twitter.createFriendship(id);
-//					}
-				} else if (entity.getLevel() != com.appspot.bitlyminous.entity.User.Level.DIRECT_USER) {
-					entity.setLevel(com.appspot.bitlyminous.entity.User.Level.DIRECT_USER);
-					userService.updateUser(entity);
-					twitter.createFriendship(user.getScreenName());
-					twitter.sendDirectMessage(user.getScreenName(), ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.welcome"));
-					// following fofs will hit the limit soon.
-//					IDs friendsIDs = twitter.getFriendsIDs(user.getId());
-//					for (int id : friendsIDs.getIDs()) {
-//						twitter.createFriendship(id);
-//					}
-				}
-			}
+            boolean exists = true;
+            long cursor = -1;
+            
+            while(exists) {
+            	//return 100 follower with status per request
+            	PagableResponseList<User> twitterFollowers = twitter.getFollowersStatuses(cursor);
+
+    			for (User user : twitterFollowers) {
+    				com.appspot.bitlyminous.entity.User entity = userService.getUserByScreenName(user.getScreenName());
+    				if (entity == null) {
+    					entity = new com.appspot.bitlyminous.entity.User();
+    					entity.setScreenName(user.getScreenName());
+    					entity.setLevel(com.appspot.bitlyminous.entity.User.Level.DIRECT_USER);
+    					userService.updateUser(entity);
+    					twitter.createFriendship(user.getScreenName());
+    					twitter.sendDirectMessage(user.getScreenName(), ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.welcome"));
+    					// following fofs will hit the limit soon.
+//    					IDs friendsIDs = twitter.getFriendsIDs(user.getId());
+//    					for (int id : friendsIDs.getIDs()) {
+//    						twitter.createFriendship(id);
+//    					}
+    				} else if (entity.getLevel() != com.appspot.bitlyminous.entity.User.Level.DIRECT_USER) {
+    					entity.setLevel(com.appspot.bitlyminous.entity.User.Level.DIRECT_USER);
+    					userService.updateUser(entity);
+    					twitter.createFriendship(user.getScreenName());
+    					twitter.sendDirectMessage(user.getScreenName(), ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.welcome"));
+    					// following fofs will hit the limit soon.
+//    					IDs friendsIDs = twitter.getFriendsIDs(user.getId());
+//    					for (int id : friendsIDs.getIDs()) {
+//    						twitter.createFriendship(id);
+//    					}
+    				}
+    			}
+    			
+                exists = twitterFollowers.hasNext();
+                cursor = twitterFollowers.getNextCursor();
+            }
 		} catch (Exception e) {
 			throw new ServiceException(e);
 		}
@@ -316,6 +335,9 @@ public class TwitterServiceImpl extends BaseService implements TwitterService {
 	/**
 	 * Gets the authorization.
 	 * 
+	 * @param token the token
+	 * @param tokenSecret the token secret
+	 * 
 	 * @return the authorization
 	 */
 	protected Authorization getAuthorization(String token, String tokenSecret) {
@@ -335,6 +357,9 @@ public class TwitterServiceImpl extends BaseService implements TwitterService {
 	/**
 	 * Gets the twitter client.
 	 * 
+	 * @param token the token
+	 * @param tokenSecret the token secret
+	 * 
 	 * @return the twitter client
 	 */
 	protected Twitter getTwitterClient(String token, String tokenSecret) { 
@@ -350,6 +375,13 @@ public class TwitterServiceImpl extends BaseService implements TwitterService {
 		return as(ApplicationConstants.BITLY_USERNAME, ApplicationConstants.BITLY_KEY);
 	}
 	
+	/**
+	 * Gets the timeline handlers.
+	 * 
+	 * @param context the context
+	 * 
+	 * @return the timeline handlers
+	 */
 	protected List<TwitterHandler> getTimelineHandlers(TwitterContext context) {
 		List<TwitterHandler> timelineHandlers = new ArrayList<TwitterHandler>();
 		timelineHandlers.add(new SaveUserHandler(context));		
@@ -362,6 +394,11 @@ public class TwitterServiceImpl extends BaseService implements TwitterService {
 		return timelineHandlers;
 	}
 	
+	/**
+	 * Save version.
+	 * 
+	 * @param version the version
+	 */
 	private void saveVersion(Version version) {
 		EntityManager entityManager = createEntityManager();
 		try {
@@ -371,6 +408,11 @@ public class TwitterServiceImpl extends BaseService implements TwitterService {
 		}
 	}
 
+	/**
+	 * Save user.
+	 * 
+	 * @param user the user
+	 */
 	private void saveUser(com.appspot.bitlyminous.entity.User user) {
 		UserService userService = ServiceFactory.newInstance().createUserService();
 		userService.updateUser(user);

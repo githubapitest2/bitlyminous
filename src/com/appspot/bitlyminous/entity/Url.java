@@ -154,16 +154,28 @@ public class Url extends Bean {
 		this.shortUrl = shortUrl;
 	}
 	
+	/**
+	 * Gets the date submitted.
+	 * 
+	 * @return the date submitted
+	 */
 	@Basic
 	public Date getDateSubmitted() {
 		return dateSubmitted;
 	}
 
+	/**
+	 * Sets the date submitted.
+	 * 
+	 * @param dateSubmitted the new date submitted
+	 */
 	public void setDateSubmitted(Date dateSubmitted) {
 		this.dateSubmitted = dateSubmitted;
 	}
 
 	/**
+	 * Gets the category.
+	 * 
 	 * @return the category
 	 */
 	@Basic
@@ -172,7 +184,9 @@ public class Url extends Bean {
 	}
 
 	/**
-	 * @param category the category to set
+	 * Sets the category.
+	 * 
+	 * @param category the new category
 	 */
 	public void setCategory(String category) {
 		this.category = category;

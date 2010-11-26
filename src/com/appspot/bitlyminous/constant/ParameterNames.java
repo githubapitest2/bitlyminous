@@ -57,7 +57,7 @@ public interface ParameterNames {
 	/** The Constant FOURSQUARE_AUTH. */
 	public static final String FOURSQUARE_AUTH = "FoursquareAuth";
 
-	/** The Constant LOGOUT. */
+	/** The Constant LOGOUT_AUTH. */
 	public static final String LOGOUT_AUTH = "Logout";
 	
 	/** The Constant TWITTER_MAIL. */
@@ -94,7 +94,10 @@ public interface ParameterNames {
 	public static final String UPDATE_GSB_DATA_SCHED = "/cron/updateSafeBrowsingData";
 
 	/** The Constant RUN_MAINTENANCE_SCHED. */
-	public static final String RUN_MAINTENANCE_SCHED = "/cron/runMaintenance";;
+	public static final String RUN_MAINTENANCE_SCHED = "/cron/runMaintenance";
+	
+	/** The Constant IMPORT_FRIENDS_SCHED. */
+	public static final String IMPORT_FRIENDS_SCHED = "/cron/importFriends";
 	
 	/** The Constant UPLOAD_GSB_DATA. */
 	public static final String UPLOAD_GSB_DATA = "uploadSafeBrowsingData";

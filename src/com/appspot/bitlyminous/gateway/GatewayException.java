@@ -24,6 +24,7 @@ public class GatewayException extends RuntimeException {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -2392119987027760999L;
 	
+	/** The error code. */
 	private int errorCode;
 
 	/**
@@ -60,14 +61,18 @@ public class GatewayException extends RuntimeException {
 	}
 
 	/**
-	 * @return the errorCode
+	 * Gets the error code.
+	 * 
+	 * @return the error code
 	 */
 	public int getErrorCode() {
 		return errorCode;
 	}
 
 	/**
-	 * @param errorCode the errorCode to set
+	 * Sets the error code.
+	 * 
+	 * @param errorCode the new error code
 	 */
 	public void setErrorCode(int errorCode) {
 		this.errorCode = errorCode;

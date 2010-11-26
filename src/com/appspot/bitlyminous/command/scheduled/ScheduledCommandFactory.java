@@ -33,6 +33,7 @@ public class ScheduledCommandFactory {
 	static {
 		COMMANDS.put(ParameterNames.CHECK_TWEETS_SCHED, new CheckTweetsCommand());
 		COMMANDS.put(ParameterNames.CHECK_MENTIONS_SCHED, new CheckMentionsCommand());
+		COMMANDS.put(ParameterNames.IMPORT_FRIENDS_SCHED, new ImportFriendsCommand());
 		COMMANDS.put(ParameterNames.SEARCH_TWEETS_SCHED, new SearchTweetsCommand());
 		COMMANDS.put(ParameterNames.SEND_FF_SCHED, new SendFollowFridayCommand());
 		COMMANDS.put(ParameterNames.SEND_POPULAR_LINKS_SCHED, new SendPopularLinksCommand());

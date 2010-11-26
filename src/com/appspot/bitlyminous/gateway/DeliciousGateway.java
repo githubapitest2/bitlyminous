@@ -149,6 +149,9 @@ public class DeliciousGateway extends BaseGateway {
 	    
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.appspot.bitlyminous.gateway.BaseGateway#getGsonBuilder()
+	 */
 	@Override
 	protected GsonBuilder getGsonBuilder() {
 		GsonBuilder gson = super.getGsonBuilder();

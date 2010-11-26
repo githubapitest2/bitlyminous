@@ -51,12 +51,12 @@ public class DeliciousExample {
 	
 
 	/**
-	 * The main method.
-	 * 
-	 * @param args the arguments
-	 * 
-	 * @throws Exception the exception
-	 */
+ * The main method.
+ * 
+ * @param args the arguments
+ * 
+ * @throws Exception the exception
+ */
 	public static void main(String[] args) throws Exception {
     	OAuthConsumer consumer = new DefaultOAuthConsumer(ApplicationConstants.DELICIOUS_CONSUMER_KEY,
     			ApplicationConstants.DELICIOUS_CONSUMER_SECRET);

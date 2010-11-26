@@ -51,6 +51,11 @@ public interface UserService {
 	 */
 	public void updateUser(User user);
 	
+	/**
+	 * Gets the all authenticated users.
+	 * 
+	 * @return the all authenticated users
+	 */
 	public List<User> getAllAuthenticatedUsers();
 
 }

@@ -35,6 +35,11 @@ import twitter4j.StatusUpdate;
  */
 public class ScanLinkHandler extends AbstractTwitterHandler {
 
+	/**
+	 * Instantiates a new scan link handler.
+	 * 
+	 * @param context the context
+	 */
 	public ScanLinkHandler(TwitterContext context) {
 		super(context);
 	}
@@ -50,15 +55,17 @@ public class ScanLinkHandler extends AbstractTwitterHandler {
 				Set<Url> longUrls = getBitlyClient().call(Bitly.expand(shortUrls.toArray(new String[shortUrls.size()])));
 				GoogleSafeBrowsingGateway gateway = getGoogleSafeBrowsingGateway();
 				for (Url url : longUrls) {
-					if (gateway.isBlacklisted(url.getLongUrl())) {
-						StatusUpdate reply = new StatusUpdate(ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.badurl", new String[] {"@" + tweet.getUser().getScreenName(), trimText(tweet.getText(), 20), ApplicationConstants.GOOGLE_SAFE_BROWSING_REF_URL}));
-						reply.setInReplyToStatusId(tweet.getId());
-						return reply;
-					}
-					if (gateway.isMalwarelisted(url.getLongUrl())) {
-						StatusUpdate reply = new StatusUpdate(ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.badurl", new String[] {"@" + tweet.getUser().getScreenName(), trimText(tweet.getText(), 20), ApplicationConstants.GOOGLE_SAFE_BROWSING_REF_URL}));
-						reply.setInReplyToStatusId(tweet.getId());
-						return reply;
+					if (!isEmpty(url.getLongUrl())) {
+						if (gateway.isBlacklisted(url.getLongUrl())) {
+							StatusUpdate reply = new StatusUpdate(ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.badurl", new String[] {"@" + tweet.getUser().getScreenName(), trimText(tweet.getText(), 20), ApplicationConstants.GOOGLE_SAFE_BROWSING_REF_URL}));
+							reply.setInReplyToStatusId(tweet.getId());
+							return reply;
+						}
+						if (gateway.isMalwarelisted(url.getLongUrl())) {
+							StatusUpdate reply = new StatusUpdate(ApplicationResources.getLocalizedString("com.appspot.bitlyminous.message.badurl", new String[] {"@" + tweet.getUser().getScreenName(), trimText(tweet.getText(), 20), ApplicationConstants.GOOGLE_SAFE_BROWSING_REF_URL}));
+							reply.setInReplyToStatusId(tweet.getId());
+							return reply;
+						}
 					}
 				}
 			}

@@ -32,21 +32,34 @@ import com.appspot.bitlyminous.service.UserService;
  */
 public class UserServiceImpl extends BaseService implements UserService {
 	
+	/**
+	 * Instantiates a new user service impl.
+	 */
+	public UserServiceImpl() {
+		super("user-service");
+	}
+
 	/* (non-Javadoc)
 	 * @see com.appspot.bitlyminous.service.UserService#getUserByScreenName(java.lang.String)
 	 */
 	public User getUserByScreenName(String screenName) {
-		EntityManager entityManager = createEntityManager();
-		try {
-			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("screenName", screenName);
-			User user = getDao(entityManager).getSingleResult(User.class, NamedQueries.FIND_USER_BY_SCREEN_NAME, parameters);
-			if (user != null) {
-				populateUser(user);
-			}
+		User user = (User) memcache.get(screenName);
+		if (user != null) {
 			return user;
-		} finally {
-			closeEntityManager(entityManager);
+		} else {
+			EntityManager entityManager = createEntityManager();
+			try {
+				Map<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("screenName", screenName);
+				user = getDao(entityManager).getSingleResult(User.class, NamedQueries.FIND_USER_BY_SCREEN_NAME, parameters);
+				if (user != null) {
+					populateUser(user);
+					memcache.put(user.getScreenName(), user);
+				}
+				return user;
+			} finally {
+				closeEntityManager(entityManager);
+			}
 		}
 	}
 	
@@ -87,11 +100,17 @@ public class UserServiceImpl extends BaseService implements UserService {
 			} else {
 				getDao(entityManager).merge(user);
 			}
+			memcache.delete(user.getScreenName());
 		} finally {
 			closeEntityManager(entityManager);
 		}
 	}
 	
+	/**
+	 * Populate user.
+	 * 
+	 * @param user the user
+	 */
 	private void populateUser(User user) {
 		if (user.getTags() != null) {
 			user.getTags().getTag().size();

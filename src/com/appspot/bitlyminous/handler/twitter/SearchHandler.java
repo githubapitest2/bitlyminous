@@ -31,6 +31,11 @@ import com.rosaloves.bitlyj.Bitly;
  */
 public class SearchHandler extends AbstractTwitterHandler {
 
+	/**
+	 * Instantiates a new search handler.
+	 * 
+	 * @param context the context
+	 */
 	public SearchHandler(TwitterContext context) {
 		super(context);
 	}

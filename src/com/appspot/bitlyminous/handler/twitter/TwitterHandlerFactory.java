@@ -28,10 +28,14 @@ import twitter4j.Status;
  * A factory for creating TwitterHandler objects.
  */
 public class TwitterHandlerFactory {
+	
+	/** The context. */
 	private TwitterContext context;
 	
     /**
      * Instantiates a new twitter handler factory.
+     * 
+     * @param context the context
      */
     private TwitterHandlerFactory(TwitterContext context) {
     	this.context = context;
@@ -41,11 +45,13 @@ public class TwitterHandlerFactory {
 		HANDLERS.put("tweetforme", new TweetForMeHandler("tweetforme", context));
     }
 
-	/** The Constant COMMANDS. */
+	/** The HANDLERS. */
 	private final Map<String, TwitterHandler> HANDLERS = new HashMap<String, TwitterHandler>();
 
     /**
      * New instance.
+     * 
+     * @param context the context
      * 
      * @return the twitter handler factory
      */
